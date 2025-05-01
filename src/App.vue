@@ -21,7 +21,9 @@ function changeTab(comp) {
 <template>
   <h1>内置组件 Component</h1>
 
-  <p>提供动态组件加载功能。在 Component 占位点上将自定义组件进行指定目标的渲染。</p>
+  <p>
+    提供动态组件加载功能。在 Component 占位点上将自定义组件进行指定目标的渲染。
+  </p>
 
   <hr />
   <h2>点击父组件按钮，切换子组件</h2>
@@ -36,5 +38,39 @@ function changeTab(comp) {
   <button @click="changeTab(Comp4)">ChangeComp4</button>
   <button @click="changeTab(Comp5)">ChangeComp5</button>
 
-  <component :is="tab"></component>
+  <transition
+    enter-active-class="animate__animated animate__tada"
+    leave-active-class="animate__animated animate__bounceOutRight"
+  >
+    <keep-alive :include="['Comp1', 'Comp2', 'Comp3']" :max="2">
+      <component :is="tab"></component>
+    </keep-alive>
+  </transition>
+
+  <p>
+    inlcude 属性值可以设置为字符串、正则表达式和数组3种，include
+    属性值为name，默认情况下，与组件的文件名相同
+  </p>
+
+  <p>
+    max 用于限制缓存组件的最大数量。max的算法遵循 LRU（Least Recently Used
+    最近最少使用）算法
+  </p>
+  <!--
+
+  <keep-alive :include="Comp1,Comp2">
+    <component :is="tab"></component>
+  </keep-alive>
+
+
+  <keep-alive :include="/Comp1|Comp2/">
+    <component :is="tab"></component>
+  </keep-alive>
+
+
+  <keep-alive include="['Comp1','Comp2']">
+    <component :is="tab"></component>
+  </keep-alive>
+
+  -->
 </template>
