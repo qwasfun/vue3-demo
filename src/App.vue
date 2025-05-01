@@ -1,5 +1,7 @@
 <script setup>
 console.log('hello script setup')
+import { showGithubLink } from './utils/utils'
+showGithubLink()
 </script>
 
 <template>
