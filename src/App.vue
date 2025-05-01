@@ -1,7 +1,7 @@
 <script setup>
-console.log('hello script setup')
+import HelloWorld from './components/HelloWorld.vue';
 </script>
 
 <template>
-  <h1>The vue3 demos</h1>
+  <HelloWorld  msg="Hello World" count="0"/>
 </template>
