@@ -36,5 +36,31 @@ function changeTab(comp) {
   <button @click="changeTab(Comp4)">ChangeComp4</button>
   <button @click="changeTab(Comp5)">ChangeComp5</button>
 
-  <component :is="tab"></component>
+  <keep-alive :include="['Comp1', 'Comp2', 'Comp3']" :max="2">
+    <component :is="tab"></component>
+  </keep-alive>
+
+  <p>
+    inlcude 属性值可以设置为字符串、正则表达式和数组3种，include
+    属性值为name，默认情况下，与组件的文件名相同
+  </p>
+
+  <p>max 用于限制缓存组件的最大数量。max的算法遵循 LRU（Least Recently Used 最近最少使用）算法</p>
+  <!--
+
+  <keep-alive :include="Comp1,Comp2">
+    <component :is="tab"></component>
+  </keep-alive>
+
+
+  <keep-alive :include="/Comp1|Comp2/">
+    <component :is="tab"></component>
+  </keep-alive>
+
+
+  <keep-alive include="['Comp1','Comp2']">
+    <component :is="tab"></component>
+  </keep-alive>
+
+  -->
 </template>
